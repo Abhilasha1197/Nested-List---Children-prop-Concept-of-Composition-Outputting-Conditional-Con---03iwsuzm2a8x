@@ -155,7 +155,42 @@ const states = [
 ];
 
 function App() {
-  return <div id="main"></div>;
+  const [cities,setcities] = useState([]);
+  const [showCity,setshowCity] = useState(false);
+  const [showTowns,setShowTowns] = useState(false);
+  const [towns,setTowns] = useState([]);
+
+  const displayCity = id =>{
+    setcities(pre => [...states[id]].cities);
+    setshowCity(!showCity);
+    if(showTowns)
+    setShowTowns(!showTowns);
+  }
+  const displayTowns = (id) =>{
+    setTowns(cities[id].towns);
+    setShowTowns(!showTowns);
+  }
+  return (
+  <div id="main">
+    <div className="states">
+      {states.map((state,index) =>(
+        <state key= {`${state + index}`}
+        displayCity = {displayCity} id = {index} stateName = {state.name} />
+      ))}
+    </div>
+    <div className="cities">
+      {cities && showCity && cities.map((city,index) => (
+        <City key={`${city + index}`}
+        displayTowns = {displayTowns} id = {idx} cityName = {city.name} />
+      ))}
+    </div>
+    <div className="towns">
+      {towns && showTowns && towns.map((towns, index) =>(
+        <Town key={`${town + index}`} id = {index} townName = {town.name} />
+      ))}
+    </div>
+  </div>
+  )
 }
 
 export default App;
