@@ -181,7 +181,7 @@ function App() {
     <div className="cities">
       {cities && showCity && cities.map((city,index) => (
         <City key={`${city + index}`}
-        displayTowns = {displayTowns} id = {idx} cityName = {city.name} />
+        displayTowns = {displayTowns} id = {index} cityName = {city.name} />
       ))}
     </div>
     <div className="towns">
